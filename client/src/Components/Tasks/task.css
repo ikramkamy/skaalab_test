@@ -1,0 +1,27 @@
+.statusTastk{
+   font-weight: bold;
+}
+.wrap-task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50vw;
+    border: 1px solid lightgray;
+    margin-bottom: 10px;
+}
+.wrap-task-component{
+    background-color: lightgray;
+    border: 1px solid gray;
+    height: 50vh;
+    padding: 10%;
+    position: absolute;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+.first-page{
+    position: relative;
+}
+.btn_update{
+    margin-top: 40%;
+}
