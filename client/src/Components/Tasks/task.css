@@ -19,9 +19,27 @@
     display: flex;
     flex-direction: column;
 }
+.task-elem{
+    flex: 1;
+}
+.creat_componenet{
+    position: absolute;
+    top: 25%;
+    right: 0%;
+}
 .first-page{
     position: relative;
 }
 .btn_update{
     margin-top: 40%;
+}
+.elem-update{
+    cursor: pointer;
+    color: blue;
+    font-weight: bold;
+}
+.elem-delete{
+    cursor: pointer;
+    color: red;
+    font-weight: bold; 
 }

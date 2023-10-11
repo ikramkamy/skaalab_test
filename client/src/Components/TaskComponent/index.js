@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 
-const Item=(showItemvalue, _id)=>{
+const Item=(showItemvalue, id)=>{
     const [showItem, setShowItem]=useState(showItemvalue)
     const [input, setInput] =useState({
         name:"",
@@ -21,10 +21,12 @@ const handel2=(e)=>{
     
     }
     const updateTask=()=>{
-        console.log(input)
+     
         setShowItem(!showItem)
-        
-axios.post(`/update-task/${_id}`,input).then(()=>{
+      const idu= window.localStorage.getItem('id')
+      console.log("the id",idu)
+     console.log("the rout for update request", `/update-task/${idu}` )   
+axios.post(`/update-task/${idu}`,input).then(()=>{
 
 }).catch((err)=>{
     console.log("error in updating",err)

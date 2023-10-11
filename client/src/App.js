@@ -1,11 +1,23 @@
 import Task from './Components/Tasks';
 import './App.css'
-
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import Dashboard from './Components/Dashboard';
 function App() {
   return (
     <div className="app">
      <h1>Welcome to skaalab task manager application </h1>
-     <Task/>
+     <div>
+      <Link to="/">Home</Link>
+      <Link to="/dashboard">dashboard</Link>
+      <Link to="/dashboard">Login</Link>
+     </div>
+     <Routes>
+<Route path="/" element={<Task/>} />
+<Route path="/dashboard" element={<Dashboard/>} />
+
+
+     </Routes>
+
     </div>
   );
 }

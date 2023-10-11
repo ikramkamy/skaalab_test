@@ -28,22 +28,33 @@ exports.getalltasks=(req,res)=>{
     
     const name=req.body.name;
     const status=req.body.status;
-    Task.findByIdAndUpdate({_id:req.params._id},{
-        name,
-        status
+    const _id=req.params._id ;
+    Task.findOneAndUpdate({"id":req.params._id },{
+        name:req.body.name,
+        status:req.body.status
     }).then(()=>{
-    const taskupdated={name,status}
+    const taskupdated={name,status,_id}
         res.json(taskupdated)
-        console.log("UPDATE SUCCED",taskupdated)
+        console.log("UPDATE SUCCED")
     })
     
         .catch((err) => {
           console.log("UPDATE FAILED",err)
+          console.log("UPDATE FAILED because of id ",_id)
           res.json({
             err: err,
             message: "Une erreur c'est produite",
           });
         });
+    
+    }
+    exports.DeleteTask=(req,res)=>{
+
+      Task.findOneAndDelete({ "_id": req.params._id}).then(()=>{
+        console.log('task deleted succesfully')
+      }).catch((err)=>{
+        console.log("error deleting task",err)
+      })
     
     }
     

@@ -9,8 +9,6 @@ const TaskSchema= new mongoose.Schema({
         type:String,
         default:"uncompleted",
     },
-   
-
 
 })
 

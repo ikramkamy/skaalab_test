@@ -2,25 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import './task.css';
 import Item from "../TaskComponent";
+import CreateTask from "../TaskComponent/CreateTask";
 const Task=()=>{
     const [tasklist, setTaskList]=useState([])
-    const [newTask, setNewTask]=useState([])
-    const [idupdate,setIdupdate]=useState([])
+    
+    const [idupdate,setIdupdate]=useState('')
     const [showItem, setShowItem]=useState(false)
-    const [task, setTask]=useState({
-        name:"task one",
-        status:"uncompleted"
-     })
+    const [showItem1, setShowItem1]=useState(false)
+    
 
      const addtask=()=>{
-        console.log('the task we are sending')
-        axios.post('/add-task',task).then(()=>{
-            alert("are you sure you want to add this task ?")
-            console.log('the task we are sending')
-            
-            }).catch((err)=>{
-                console.log("we have an error client side",err)
-            }) 
+        setShowItem1(!showItem1)
     }
     const getalltasks=()=>{
         axios.get('/get-all-tasks').then((res)=>{
@@ -30,12 +22,21 @@ const Task=()=>{
     }
     const updateTask=(e)=>{
         setShowItem(!showItem)
-        setIdupdate(e._id)
-console.log('the element we are about to update', e)
+        var idup=e._id.toString()
+        setIdupdate(idup)
+        window.localStorage.setItem('id',idupdate)
+        console.log('the element we are about to update', e.name)
+        console.log('the element we are about to update', e._id.toString())
+console.log('the element we are about to update', idupdate )
     }
-    const deletTask=()=>{
+    const deletTask=(e)=>{
+alert("are you sur you want to delete this item")
+console.log("the task we are about to delete", e)
+axios.delete(`/delet-task/${e._id}`).catch((err)=>{
+console.log('deleting failed because', err)
+})
+}
 
-    }
 return(<div className="first-page">
     <h3>Task list</h3>
     <button onClick={addtask}>Add task</button>
@@ -51,12 +52,13 @@ return(<div className="first-page">
       <div className="wrap-task">
       <div className="task-elem">{e.name}</div> 
       <div className="task-elem">{ e.status}</div>
-      <div className="task-elem" onClick={()=>updateTask(e)}>update</div>
-      <div className="task-elem" onClick={deletTask}>delete</div>
+      <div className="task-elem elem-update" onClick={()=>updateTask(e)}>update</div>
+      <div className="task-elem elem-delete" onClick={()=>deletTask(e)}>delete</div>
       </div>
       </div>)}
     </ul>
-{showItem && <Item updateTask={updateTask} showItemvalue={showItem} _id={idupdate} />}
+{showItem && <Item updateTask={updateTask} showItemvalue={showItem} id={idupdate} />}
+{showItem1 && <CreateTask  showcreate={showItem1} />}
 
 
 </div>)
