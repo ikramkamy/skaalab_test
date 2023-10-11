@@ -6,10 +6,10 @@ function App() {
   return (
     <div className="app">
      <h1>Welcome to skaalab task manager application </h1>
-     <div>
+     <div className='navbar'>
       <Link to="/">Home</Link>
       <Link to="/dashboard">dashboard</Link>
-      <Link to="/dashboard">Login</Link>
+      <Link to="/login">Login</Link>
      </div>
      <Routes>
 <Route path="/" element={<Task/>} />
