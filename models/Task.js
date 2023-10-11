@@ -9,7 +9,10 @@ const TaskSchema= new mongoose.Schema({
         type:String,
         default:"uncompleted",
     },
-
+createdat:{
+type: Date,
+default: Date.now
+},
 })
 
 const Task=mongoose.model('task',TaskSchema);
